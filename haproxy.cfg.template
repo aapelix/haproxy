@@ -1,0 +1,14 @@
+defaults
+  mode tcp
+  timeout connect 60s
+  timeout client  60s
+  timeout server  60s
+
+frontend mc
+  bind *:25565
+  default_backend mc_backend
+
+backend mc_backend
+  option tcp-check
+  tcp-check connect
+  server s1 ${MC_HOST}:${MC_PORT} check inter 1000 rise 1 fall 1
