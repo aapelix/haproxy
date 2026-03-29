@@ -1,5 +1,7 @@
 FROM haproxy:alpine
 
+USER root
+
 RUN apk add --no-cache gettext
 
 COPY haproxy.cfg.template /haproxy.cfg.template
