@@ -15,6 +15,5 @@ frontend mc
 
 backend mc_backend
   retries 30
-  retry-on conn-failure empty-response timeout-retry
   default-server inter 1s fall 1 rise 1
   server s1 ${MC_HOST}:${MC_PORT}
