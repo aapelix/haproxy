@@ -5,7 +5,7 @@ global
 
 defaults
   mode tcp
-  timeout connect 60s
+  timeout connect 120s
   timeout client  2m
   timeout server  2m
 
@@ -14,4 +14,7 @@ frontend mc
   default_backend mc_backend
 
 backend mc_backend
+  retries 30
+  retry-on conn-failure empty-response timeout-retry
+  default-server inter 1s fall 1 rise 1
   server s1 ${MC_HOST}:${MC_PORT}
